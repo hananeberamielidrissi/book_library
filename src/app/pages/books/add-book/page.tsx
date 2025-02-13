@@ -16,7 +16,6 @@ export default function AddBookPage() {
   const router = useRouter();
   const { addBook } = useBooks();
 
-  // États des champs
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
@@ -28,7 +27,6 @@ export default function AddBookPage() {
 
   const [successMessage, setSuccessMessage] = useState("");
 
-  // Vérifier si l'utilisateur est admin
   useEffect(() => {
     if (user?.role !== "admin") {
       setIsRedirecting(true);
@@ -56,12 +54,6 @@ export default function AddBookPage() {
     };
 
     addBook(newBook); 
-    // setShowSuccessModal(true);
-
-    // setTimeout(() => {
-    //   setShowSuccessModal(false);
-    //   router.push("/books");
-    // }, 2000);
     setSuccessMessage("📗 Livre ajouté avec succés !");
     setTimeout(() => {
       setSuccessMessage(""); 

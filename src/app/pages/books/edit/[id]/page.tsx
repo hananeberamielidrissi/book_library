@@ -12,7 +12,7 @@ import { CheckCircle } from "lucide-react";
 
 export default function EditBookPage() {
   const router = useRouter();
-  const { id } = useParams(); // Récupérer l'ID du livre depuis l'URL
+  const { id } = useParams();
   const { books, updateBook } = useBooks();
   
   const [book, setBook] = useState<Book | null>(null);
@@ -24,7 +24,7 @@ export default function EditBookPage() {
       if (foundBook) {
         setBook(foundBook);
       } else {
-        router.push("/pages/books"); // Redirige si le livre n'existe pas
+        router.push("/pages/books");
       }
     }
   }, [id, books, router]);

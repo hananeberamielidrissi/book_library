@@ -12,7 +12,7 @@ import Image from "next/image";
 import { useAuth } from "@/hooks/use-auth";
 import { useBooks } from "@/context/BooksContext";
 import { useRouter } from "next/navigation";
-import { Pencil, Trash } from "lucide-react"; // Importation des icônes
+import { Pencil, Trash } from "lucide-react";
 import { useState } from "react";
 
 interface BookCardProps {
@@ -21,13 +21,13 @@ interface BookCardProps {
 }
 
 export function BookCard({ book, onViewDetails }: BookCardProps) {
-  const { user } = useAuth(); // Récupération de l'utilisateur connecté
-  const { removeBook } = useBooks(); // Fonction pour supprimer un livre
+  const { user } = useAuth();
+  const { removeBook } = useBooks();
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
 
   const handleEdit = () => {
-    router.push(`/pages/books/edit/${book.id}`); // Rediriger vers la page d'édition
+    router.push(`/pages/books/edit/${book.id}`);
   };
 
   const handleDelete = () => {
@@ -54,12 +54,10 @@ export function BookCard({ book, onViewDetails }: BookCardProps) {
         <p className="line-clamp-2 text-white">{book.description}</p>
       </CardContent>
       <CardFooter className="flex flex-col w-full p-2 mt-2">
-        {/* Bouton Voir les détails, dans une ligne séparée */}
         <Button onClick={() => onViewDetails(book)} className="w-full bg-[#005F66] hover:bg-[#007B8B]">
           Voir les détails
         </Button>
 
-        {/* Icônes Modifier et Supprimer, dans la même ligne */}
         {user?.role === "admin" && (
           <div className="flex w-full justify-between mt-2">
             <Button variant="ghost" size="icon" onClick={handleEdit}>
