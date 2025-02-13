@@ -14,14 +14,20 @@ export const useAuth = create<AuthStore>((set) => ({
   signIn: async (email, password) => {
     set({ isLoading: true });
     try {
-      // Simuler une API call
-      const user = {
-        id: '1',
-        name: 'John Doe',
-        email,
-        role: 'reader' as const,
-      };
-      set({ user, isLoading: false });
+      // Liste des utilisateurs fictifs
+      const testUsers: User[] = [
+        { id: '1', name: 'Admin User', email: 'admin@example.com', role: 'admin' },
+        { id: '2', name: 'Reader User', email: 'reader@example.com', role: 'reader' }
+      ];
+
+      // Trouver l'utilisateur correspondant
+      const user = testUsers.find(u => u.email === email);
+
+      if (user) {
+        set({ user, isLoading: false });
+      } else {
+        throw new Error('Identifiants incorrects');
+      }
     } catch (error) {
       set({ isLoading: false });
       throw error;

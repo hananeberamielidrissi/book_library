@@ -22,7 +22,7 @@ import { ReviewForm } from "./review-form"
   
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="max-w-3xl">
+        <DialogContent className="max-w-3xl bg-gray-200">
           <DialogHeader>
             <DialogTitle>{book.title}</DialogTitle>
             <DialogDescription>par {book.author}</DialogDescription>
@@ -42,7 +42,7 @@ import { ReviewForm } from "./review-form"
                 <p><strong>Date de publication:</strong> {book.publishedDate}</p>
                 <p><strong>Note:</strong> {book.rating}/5</p>
               </div>
-              {user?.role === 'reader' && <ReviewForm bookId={book.id} />}
+              <ReviewForm bookId={book.id} />
             </div>
           </div>
         </DialogContent>
